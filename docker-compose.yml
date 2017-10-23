@@ -1,0 +1,41 @@
+version: '2'
+services:
+  wordpress:
+    image: wordpress:4.8-php7.1
+    ports:
+      - 80
+    volumes:
+      - ./html/wp-content:/var/www/html/wp-content
+      - ./shell_scripts:/shell_scripts
+    environment:
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_DATABASE}
+      WORDPRESS_TABLE_PREFIX: ${DB_TABLE_PREFIX}_
+      WORDPRESS_DB_HOST: ${DB_USER}_db:3306
+      VIRTUAL_PROTO: ${VIRTUAL_PROTO}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+    links:
+      - mysql:${DB_USER}_db
+      - redis
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: foobar
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/dump:/docker-entrypoint-initdb.d
+      - ./data/db:/var/lib/mysql
+
+  # redis:
+  # container_name: common-redis
+  # image: redis:4
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

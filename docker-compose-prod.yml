@@ -1,0 +1,38 @@
+version: '2'
+services:
+  wordpress:
+    image: wordpress:4.8-php7.1
+    container_name: wp-santrod
+    ports:
+      - 80
+      - 443
+    volumes:
+      - ./html/wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_USER: santrod
+      WORDPRESS_DB_PASSWORD: kgB7yJCwGYq2jeQH
+      WORDPRESS_DB_NAME: santrod
+      WORDPRESS_TABLE_PREFIX: st_
+      WORDPRESS_DB_HOST: santrod_db:3306
+      VIRTUAL_PROTO: http
+      VIRTUAL_HOST: santrod.com
+    links:
+      - mysql:santrod_db
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-santrod
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: santrod
+      MYSQL_USER: santrod
+      MYSQL_PASSWORD: kgB7yJCwGYq2jeQH
+    volumes:
+      - ./data/dump:/docker-entrypoint-initdb.d
+      - ./data/db:/var/lib/mysql
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

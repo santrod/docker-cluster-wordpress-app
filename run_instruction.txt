@@ -1,0 +1,1 @@
+docker exec -i wp-santrod bash -c '/tmp/set_env_project.sh'
