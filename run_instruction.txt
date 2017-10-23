@@ -1,1 +1,5 @@
-docker exec -i wp-santrod bash -c '/tmp/set_env_project.sh'
+# Set env values
+docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
+
+# Common services
+docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'

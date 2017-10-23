@@ -17,7 +17,6 @@ services:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
     links:
       - mysql:${DB_USER}_db
-      - redis
 
   mysql:
     image: mysql:5.7
@@ -30,10 +29,6 @@ services:
     volumes:
       - ./data/dump:/docker-entrypoint-initdb.d
       - ./data/db:/var/lib/mysql
-
-  # redis:
-  # container_name: common-redis
-  # image: redis:4
 
 networks:
   default:

@@ -1,49 +1,35 @@
-# Santrod Web
+# Docker cluster wordpress project
 
-## Description
+## Brief project history
 
-Santrod is my personal web, I had it on my personal server running into a tipical LAMP structure. I want to start working with docker ... and I took it like a move it to a docker architecture that will help
-
-## Project description
-
-....
-
-## Project main goal
-
-Run all the sites into my server with docker, also change my workflow leaving aside the old process getting mine this new ...
-
-## Project structure
-
-nginx-proxy
-wordpress projects
-
-## How to work with the project
-
-flujos de trabajo
-
-## How to dev
-
-## Install the project
-
-
-
-## Inital tests with docker
+This projects borns from the wish to handle several wordpress projects into my server with docker. This sites started to run into a dedicated server, in 2015 I migrated them into a virtual machine inside the dedicated server and now in 2017 I want to run them into a VM with docker into my dedicated server.
 
 Inicialmente se penso en hacer un contendor común mediante docker para todos los wordpress, de esta forma se podian optimizar todos de una sola acción, además se usaria
 menos espacio, finalmente se pudo comprobar que lo que inicialmente parecian ventajas a la hora de hacer modificaciones y de espacio, al final se convertia en un sistema muy
 rigido, donde un pequeño cambio afectaba a todos y ademas hacia que todo el sistema cambiase, tambien era más dificil de la configuracion multidominio, de la base de datos y el control
 de la version del WP, por todo esto se decide separar los proyectos, de esta forma tambien ahorramos código.
 
+## Project main goal
+
+Run several sites in wordpress into an unique machine, connected with a proxy and common services like cache services, emails servers...
+
+## Project description
+
+
+## Project structure
+
+proxy
+cluster apps (Wordpress)
+common services
+
 ## Tecnology
 
 ### Proxy
 Nginx 1.13.5
 
-### Server
+### APP
 Apache/2.4.10
 PHP 7.1.10
-
-### CMS
 Wordpress 4.8
 
 ### Database
@@ -51,6 +37,93 @@ Mysql 5.7
 
 ### Cache
 Redis 4
+
+## Start with the project
+
+## How to work with the project
+
+Start the project:
+
+create your app project, f.e. wp-project.
+
+Proxy service:
+Download the proxy project: santrod/docker_cluster_wordpress_proxy unzip the project and:
+cp .env-sample .env
+* Problems: you have other service using port 80, you must stop it.
+Then run:
+docker-compose up -d
+Now you have your proxy running
+
+Now common services
+Download the proxy project: santrod/docker_cluster_wordpress_common unzip the project into wp-project:
+Then run:
+docker-compose up -d
+Now you have your common services running
+
+Finally the app:
+Download the proxy project: santrod/docker_cluster_wordpress_app unzip the project into wp-project:
+cp .env-sample .env
+Change .env values
+password must be strong (see mysql password requirements) in other hand mysql installation will fails
+
+DB_PASSWORD=YOUR_PASSWORD
+DB_USER=YOUR_USER
+DB_DATABASE=YOUR_DATABASE
+DB_TABLE_PREFIX=wp
+VIRTUAL_HOST=YOUR_VIRTUAL_HOST
+VIRTUAL_PROTO=http
+
+Change your local host file
+Add the value of VIRTUAL_HOST to your host file
+
+You could run sudo docker-compose config to check if docker-compose.yml is right
+
+Install the plugins for the common services
+Open the shell_scripts/set_common_services.sh files, here you could plugins to use your common services
+* See how to connect with other services
+
+Fresh installation:
+Run the command:
+docker-compose up -d
+
+Access via browser to your project and install it
+
+To install common services run the below instruction:
+docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
+
+Import site:
+
+Copy your wordpress code into html/wp-content
+Database, copy a database dump into db/dump (sql file)
+
+Run the command:
+docker-compose up -d
+
+To set env values run:
+docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
+
+To install common services run the below instruction:
+docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
+
+
+Commo services
+
+Select your worpdress version:
+
+Start new app
+Problems with WP development
+Install plugins
+Install themes
+Dev environment
+Prod environment
+Change versions
+From Dev to Prod
+Tests
+CI
+
+## How to dev
+
+## Inital tests with docker
 
 ## Goals
 
