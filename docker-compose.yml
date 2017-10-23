@@ -1,7 +1,9 @@
 version: '2'
 services:
   wordpress:
-    image: wordpress:4.8-php7.1
+    build:
+      context: ./
+      dockerfile: ./app.docker
     ports:
       - 80
     volumes:
@@ -15,8 +17,6 @@ services:
       WORDPRESS_DB_HOST: ${DB_USER}_db:3306
       VIRTUAL_PROTO: ${VIRTUAL_PROTO}
       VIRTUAL_HOST: ${VIRTUAL_HOST}
-    command:
-      - cd /tmp && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && mv wp-cli.phar /bin/wp && chmod 755 /bin/wp
     links:
       - mysql:${DB_USER}_db
 
