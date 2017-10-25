@@ -9,6 +9,7 @@ services:
     volumes:
       - ./html/wp-content:/var/www/html/wp-content
       - ./shell_scripts:/shell_scripts
+      - ./app_config/smtp.ini:/usr/local/etc/php/conf.d/smtp.ini
     environment:
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}

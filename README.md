@@ -47,7 +47,7 @@ Start the project:
 create your app project, f.e. wp-project.
 
 Create the project network:
-docker network create --driver bridge nginx-proxy
+docker network create --driver=bridge nginx-proxy
 
 Proxy service:
 Download the proxy project: santrod/docker_cluster_wordpress_proxy unzip the project and:
@@ -92,7 +92,7 @@ docker-compose up -d
 Access via browser to your project and install it
 
 To install common services run the below instruction:
-docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
+docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
 
 Import site:
 
@@ -103,7 +103,7 @@ Run the command:
 docker-compose up -d
 
 To set env values run:
-docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
+docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
 
 To install common services run the below instruction:
 docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
