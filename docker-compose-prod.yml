@@ -1,36 +1,35 @@
 version: '2'
 services:
   wordpress:
-    image: wordpress:4.8-php7.1
-    container_name: wp-santrod
+    image: santrod/docker_wp:1.0
     ports:
       - 80
       - 443
-    volumes:
-      - ./html/wp-content:/var/www/html/wp-content
     environment:
-      WORDPRESS_DB_USER: santrod
-      WORDPRESS_DB_PASSWORD: kgB7yJCwGYq2jeQH
-      WORDPRESS_DB_NAME: santrod
-      WORDPRESS_TABLE_PREFIX: st_
-      WORDPRESS_DB_HOST: santrod_db:3306
-      VIRTUAL_PROTO: http
-      VIRTUAL_HOST: santrod.com
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_DATABASE}
+      WORDPRESS_TABLE_PREFIX: ${DB_TABLE_PREFIX}_
+      WORDPRESS_DB_HOST: ${DB_USER}_db:3306
+      VIRTUAL_PROTO: ${VIRTUAL_PROTO}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      SMTP_SERVER: ${SMTP_SERVER}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SERVER_HOSTNAME: ${SERVER_HOSTNAME}
     links:
-      - mysql:santrod_db
+      - mysql:${DB_USER}_db
 
   mysql:
     image: mysql:5.7
-    container_name: mysql-santrod
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: ${DB_USER}
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      MYSQL_DATABASE: santrod
-      MYSQL_USER: santrod
-      MYSQL_PASSWORD: kgB7yJCwGYq2jeQH
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./data/dump:/docker-entrypoint-initdb.d
-      - ./data/db:/var/lib/mysql
+      - /data/db:/var/lib/mysql
 
 networks:
   default:

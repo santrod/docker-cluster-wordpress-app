@@ -1,15 +1,27 @@
 FROM wordpress:4.8-php7.1
 
 # Add sudo in order to run wp-cli as the www-data user
-RUN apt-get update
-    && apt-get remove sendmail sendmail-bin
-    && apt-get install -y sudo less ssmtp
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    postfix \
+    supervisor \
+    rsyslog \
+    mailutils
 
 # Add WP-CLI
-RUN curl -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-    && mv /tmp/wp-cli.phar /bin/wp
+RUN curl -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && mv /tmp/wp-cli.phar /bin/wp \
     && chmod +x /bin/wp
+
+COPY ./app_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN mkdir -p /var/log/supervisord
+
+COPY ./smtp/run.sh /
+RUN chmod +x /run.sh
 
 # Cleanup
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
