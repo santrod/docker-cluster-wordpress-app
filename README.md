@@ -51,7 +51,7 @@ Start the project:
 create your app project, f.e. wp-project.
 
 Create the project network:
-docker network create --driver=bridge nginx-proxy
+docker network create --driver bridge nginx-proxy
 
 Proxy service:
 Download the proxy project: santrod/docker_cluster_wordpress_proxy unzip the project and:
