@@ -13,6 +13,12 @@ RUN curl -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-
     && mv /tmp/wp-cli.phar /bin/wp \
     && chmod +x /bin/wp
 
+COPY ./html/wp-content /var/www/html/wp-content
+COPY ./shell_scripts /shell_scripts
+COPY ./app_config/smtp.ini /usr/local/etc/php/conf.d/smtp.ini
+
+COPY ./data/dump /docker-entrypoint-initdb.d
+
 COPY ./app_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/log/supervisord

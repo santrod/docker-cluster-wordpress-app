@@ -1,7 +1,7 @@
 version: '2'
 services:
   wordpress:
-    image: santrod/docker_wp:1.0
+    image: username/webprojectname:1.0
     ports:
       - 80
       - 443
@@ -17,6 +17,9 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SERVER_HOSTNAME: ${SERVER_HOSTNAME}
+      LETSENCRYPT_HOST: ${VIRTUAL_HOST}, www.${VIRTUAL_HOST}
+      LETSENCRYPT_EMAIL: srmmhv@gmail.com
+
     links:
       - mysql:${DB_USER}_db
 

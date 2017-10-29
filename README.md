@@ -42,6 +42,10 @@ Redis 4
 
 ## How to work with the project
 
+Setup proyecto en local y produccion
+
+** Aunque se borre el proyecto, el código queda en la máquina virtual al igual que la db
+
 Start the project:
 
 create your app project, f.e. wp-project.
