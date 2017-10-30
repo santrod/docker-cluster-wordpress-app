@@ -12,23 +12,23 @@
 docker network create nginx-proxy
 ```
 
-4. Localhost
+####Localhost
 
-Create the containers
+1. Create the containers
 
 ```
 docker-compose up -d
 ```
 
-5. VM (docker-machine)
+####VM (docker-machine)
 
-Build the image to use
+1. Build the image to use
 
 ```
 docker build -f docker-gen-machie.docker -t username/docker-gen:tag .
 ```
 
-Run the containers into the VM (via docker-machine)
+2. Run the containers into the VM (via docker-machine)
 
 ```
 docker-compose up -f docker-compose-machine.yml -d
