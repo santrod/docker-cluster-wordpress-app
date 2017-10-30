@@ -88,47 +88,47 @@ docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_service
 
 ### VM (docker-machine)
 
-#### New site
+#### Create a new site on the cluster
 
-Build the image
-
-```
-docker build -f app.docker -t username/imagename:tag .
-```
-
-edit the docker-compose-machine.yml changing wordpress service to use your image
-
-```
-docker-compose up -d
-```
-
-Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
-
-#### Import site
-
-Copy the wp-content content to the projects folder /html/wp-content
-
-Copy a database dump (.sql) to the folder /data/dump
-
-Build the image
+1. Build the image
 
 ```
 docker build -f app.docker -t username/imagename:tag .
 ```
 
-edit the docker-compose-machine.yml changing wordpress service to use your image
+2. edit the docker-compose-machine.yml changing wordpress service to use your image
 
 ```
 docker-compose up -d
 ```
 
-Execute the script to config your wordpress with yours domain
+3. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
+
+#### Import your site to the cluster
+
+1. Copy the wp-content content to the projects folder /html/wp-content
+
+2. Copy a database dump (.sql) to the folder /data/dump
+
+3. Build the image
+
+```
+docker build -f app.docker -t username/imagename:tag .
+```
+
+4. edit the docker-compose-machine.yml changing wordpress service to use your image
+
+```
+docker-compose up -d
+```
+
+5. Execute the script to config your wordpress with yours domain
 
 ```      
 docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
 ```
 
-Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
+6. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
 
 
 #### To install common services run the below instruction:
