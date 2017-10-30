@@ -12,28 +12,26 @@
 docker network create nginx-proxy
 ```
 
-4. Run the project
+4. Localhost
 
-  4.1. Localhost
-
-  Create the containers
+Create the containers
 
 ```
-  docker-compose up -d
+docker-compose up -d
 ```
 
-  4.2. VM (docker-machine)
+5. VM (docker-machine)
 
-  Build the image to use
-
-```
-  docker build -f docker-gen-machie.docker -t username/docker-gen:tag .
-```
-
-  Run the containers into the VM (via docker-machine)
+Build the image to use
 
 ```
-  docker-compose up -f docker-compose-machine.yml -d
+docker build -f docker-gen-machie.docker -t username/docker-gen:tag .
+```
+
+Run the containers into the VM (via docker-machine)
+
+```
+docker-compose up -f docker-compose-machine.yml -d
 ```
 
 ## Install common services project
