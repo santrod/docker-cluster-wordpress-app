@@ -14,7 +14,7 @@ docker network create nginx-proxy
 
 4. Run the project
 
-### Localhost:
+4.1 Localhost
 
 Create the containers
 
@@ -22,7 +22,7 @@ Create the containers
 docker-compose up -d
 ```
 
-### VM:
+4.2 VM (docker-machine)
 
 Build the image to use
 
