@@ -52,7 +52,7 @@ docker-compose up -d
 
 ### Localhost
 
-#### New site
+#### Create a new site on the cluster
 
 1. Run the containers
 
@@ -62,7 +62,7 @@ docker-compose up -d
 
 2. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
 
-#### Import your site
+#### Import your site to the cluster
 
 1. Copy the wp-content content to the projects folder /html/wp-content
 
@@ -79,7 +79,8 @@ docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project
 ```
 5. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
 
-#### Install common services (for both cases)
+
+Install common services (for both cases)
 
 ```
 docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
