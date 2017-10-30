@@ -36,9 +36,9 @@ docker-compose up -f docker-compose-machine.yml -d
 
 ## Install common services project
 
-Clone the common [services project](https://github.com/santrod/docker_cluster_wordpress_common)
+1. Clone the common [services project](https://github.com/santrod/docker_cluster_wordpress_common)
 
-Run the project (Local and VM is the same instruction)
+2. Run the project (Local and VM is the same instruction)
 
 ```
 docker-compose up -d
