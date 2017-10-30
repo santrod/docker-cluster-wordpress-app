@@ -46,41 +46,40 @@ docker-compose up -d
 
 ## Install proxy app project (add a new site to the cluster)
 
-Clone the [app project](https://github.com/santrod/docker_cluster_wordpress_app)
+1. Clone the [app project](https://github.com/santrod/docker_cluster_wordpress_app)
 
-Create a .env from the .env.example file (VIRTUAL_HOST could include "domain.tld, www.domain.tld" )
-
-Run de project
+2. Create a .env from the .env.example file (VIRTUAL_HOST could include "domain.tld, www.domain.tld" )
 
 ### Localhost
 
 #### New site
 
-```
-docker-compose up -d
-```
-
-Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
-
-#### Import site
-
-Copy the wp-content content to the projects folder /html/wp-content
-
-Copy a database dump (.sql) to the folder /data/dump
+1. Run the containers
 
 ```
 docker-compose up -d
 ```
 
-Execute the script to config your wordpress with yours domain
+2. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
+
+#### Import your site
+
+1. Copy the wp-content content to the projects folder /html/wp-content
+
+2. Copy a database dump (.sql) to the folder /data/dump
+
+3. Run the containers
+```
+docker-compose up -d
+```
+4. Execute the script to config your wordpress with yours domain
 
 ```
 docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project.sh'
 ```
+5. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
 
-Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
-
-#### Install common services
+#### Install common services (for both cases)
 
 ```
 docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
