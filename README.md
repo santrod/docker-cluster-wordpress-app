@@ -2,17 +2,17 @@
 
 ## Install proxy project
 
-Clone the [proxy project](https://github.com/santrod/docker_cluster_wordpress_proxy)
+1. Clone the [proxy project](https://github.com/santrod/docker_cluster_wordpress_proxy)
 
-Create a .env from the .env.example file, if you'll run the project on your local path could relative if you'll run the project with docker-machine should be absolute
+2. Create a .env from the .env.example file, if you'll run the project on your local path could relative if you'll run the project with docker-machine should be absolute
 
-Create the network nginx-proxy
+3. Create the network nginx-proxy
 
 ```
 docker network create nginx-proxy
 ```
 
-Run the project
+4. Run the project
 
 ### Localhost:
 
