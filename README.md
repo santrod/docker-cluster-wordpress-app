@@ -14,7 +14,7 @@ docker network create nginx-proxy
 
 #### Localhost
 
-1. Create the containers
+1. Run the containers
 
 ```
 docker-compose up -d
