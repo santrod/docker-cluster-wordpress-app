@@ -12,7 +12,7 @@
 docker network create nginx-proxy
 ```
 
-##### You'll run the project on your Localhost
+##### Localhost
 
 1. Run the containers
 
@@ -20,7 +20,7 @@ docker network create nginx-proxy
 docker-compose up -d
 ```
 
-##### You'll run the project into VM (docker-machine)
+##### VM (docker-machine)
 
 1. Build the image to use
 
@@ -50,7 +50,7 @@ docker-compose up -d
 
 2. Create a .env from the .env.example file (VIRTUAL_HOST could include "domain.tld, www.domain.tld" )
 
-### You'll run the project on your Localhost
+### Localhost
 
 #### Create a new site on the cluster
 
@@ -86,7 +86,7 @@ docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project
 docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
 ```
 
-### You'll run the project into VM (docker-machine)
+### VM (docker-machine)
 
 #### New site
 
