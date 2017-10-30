@@ -1,5 +1,9 @@
 # Docker wordpress cluster project
 
+## Brief project history
+
+This projects borns from the wish to run several wordpress sites into my server with docker. I have a proxy create with the excelent work of [@jwilder](https://github.com/jwilder),[JrCs](https://github.com/JrCs) and [evertramos](https://github.com/evertramos), also we have a common services creator (right now only with Redis running) and finally a site creator where you could create new sites into the cluster or import your own, this creator also includes smtp server (postfix working like a satellite)
+
 ## Install proxy project
 
 1. Clone the [proxy project](https://github.com/santrod/docker_cluster_wordpress_proxy)
