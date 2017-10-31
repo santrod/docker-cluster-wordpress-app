@@ -32,7 +32,7 @@ docker-compose up -d
 1. Build the image to use
 
 ```
-docker build -f docker-gen-machie.docker -t username/docker-gen:tag .
+docker build -f docker-gen-machine.docker -t username/docker-gen:tag .
 ```
 
 2. Run the containers into the VM (via docker-machine)
