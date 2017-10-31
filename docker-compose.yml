@@ -22,6 +22,8 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SERVER_HOSTNAME: ${SERVER_HOSTNAME}
+      SITEURL: ${SITEURL}
+      HOMEURL: ${HOMEURL}
     links:
       - mysql:${DB_USER}_db
 
