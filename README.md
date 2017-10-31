@@ -38,7 +38,7 @@ docker build -f docker-gen-machine.docker -t username/docker-gen:tag .
 2. Run the containers into the VM (via docker-machine)
 
 ```
-docker-compose up -f docker-compose-machine.yml -d
+docker-compose -f docker-compose-machine.yml up -d
 ```
 
 ## Install common services project
