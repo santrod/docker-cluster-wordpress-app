@@ -87,7 +87,9 @@ docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project
 5. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
 
 
-#### Install common services (for new or imported sites)
+#### Install common services
+
+If your creating a new site you should install it before run this script
 
 ```
 docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
