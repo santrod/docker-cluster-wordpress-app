@@ -8,7 +8,7 @@ This projects borns from the wish to run several wordpress sites into my server 
 
 1. Clone the [proxy project](https://github.com/santrod/docker_cluster_wordpress_proxy)
 
-2. Create a .env from the .env.example file, if you'll run the project on your local path could relative if you'll run the project with docker-machine should be absolute
+2. Create a .env from the .env.example file, if you'll run the project on your localhost NGINX_FILES_PATH could be relative if you'll run the project with docker-machine should be absolute.
 
 3. Create the network nginx-proxy
 
