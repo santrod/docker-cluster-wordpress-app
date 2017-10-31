@@ -92,7 +92,7 @@ docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_env_project
 If your creating a new site you should install it before run this script
 
 ```
-docker exec -i <CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
+docker exec -i <WP CONTAINER ID or NAME> bash -c '/shell_scripts/set_common_services.sh'
 ```
 
 ### VM (docker-machine)
