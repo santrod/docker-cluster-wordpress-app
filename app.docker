@@ -17,8 +17,6 @@ COPY ./html/wp-content /var/www/html/wp-content
 COPY ./shell_scripts /shell_scripts
 COPY ./app_config/smtp.ini /usr/local/etc/php/conf.d/smtp.ini
 
-COPY ./data/dump /docker-entrypoint-initdb.d
-
 COPY ./app_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/log/supervisord
