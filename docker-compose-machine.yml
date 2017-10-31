@@ -32,7 +32,7 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - /data/db:/var/lib/mysql
+      - /data/db_${DB_DATABASE}:/var/lib/mysql
 
 networks:
   default:
