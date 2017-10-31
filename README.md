@@ -108,7 +108,7 @@ docker build -f app.docker -t username/imagename:tag .
 2. edit the docker-compose-machine.yml changing wordpress service to use your image
 
 ```
-docker-compose up -d
+docker-compose -f docker-compose-machine.yml up -d
 ```
 
 3. Access via browser to the VIRTUAL_HOST (you should be configurated on your hosts file if is not pointing to the machine)
@@ -128,7 +128,7 @@ docker build -f app.docker -t username/imagename:tag .
 4. edit the docker-compose-machine.yml changing wordpress service to use your image
 
 ```
-docker-compose up -d
+docker-compose -f docker-compose-machine.yml up -d
 ```
 
 5. Execute the script to config your wordpress with yours domain
