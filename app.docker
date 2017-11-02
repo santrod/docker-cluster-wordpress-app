@@ -1,12 +1,11 @@
 FROM wordpress:4.8-php7.1
 
-# Add sudo in order to run wp-cli as the www-data user
+# Add exim for emails and supervisor
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    postfix \
     supervisor \
-    rsyslog \
-    mailutils
+    exim4-daemon-light \
+    rsyslog
 
 # Add WP-CLI
 RUN curl -o /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
@@ -21,8 +20,12 @@ COPY ./app_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/log/supervisord
 
-COPY ./smtp/run.sh /
-RUN chmod +x /run.sh
+COPY ./smtp/entrypoint.sh /bin
+COPY ./smtp/set-exim4-update-conf /bin
+
+RUN echo "log_file_path = /etc/stdout" >> /etc/exim4/conf.d/main/02_exim4-config_options
+
+RUN chmod a+x /bin/entrypoint.sh && chmod a+x /bin/set-exim4-update-conf
 
 # Cleanup
 RUN apt-get clean
