@@ -4,7 +4,6 @@ services:
     image: username/webprojectname:1.0
     ports:
       - 80
-      - 443
     environment:
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
